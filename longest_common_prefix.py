@@ -25,30 +25,31 @@ class Solution:
     
     def longestCommonPrefix(self, strs: List[str]) -> str:
         common_string = ''
-        substr_in_all_items = False
         for i in range(len(strs[0])):
+            common_string += strs[0][i]
             for j in range(1, len(strs)):
-                print(strs[j])
-                if strs[0][:i] in strs[j][:i]:
-                    substr_in_all_items = True
-                else:
-                    substr_in_all_items = False
+                if common_string != strs[j][:i+1] or i+1 >= len(strs[j]):
+                    common_string = common_string[:-1]
                     break
-                
-            if substr_in_all_items:
-                common_string += strs[0][:i]
-                print("--->"+common_string)
+        return common_string
             
 
         
 if __name__ == "main":
+    # longestCommonString
+    Solution().longestCommonString(["flower","flow","flight"])
+    Solution().longestCommonString(["flower", "lower", "olo"])
+    Solution().longestCommonString(["flower", "lower", "love"])
+    Solution().longestCommonString(["flower", "lower", "love", "glow", "olo"])
+    Solution().longestCommonString(["lower", "love", "glow", "olo", "flower"])
+    Solution().longestCommonString(["flower", "flowerist", "flowless"])
+    Solution().longestCommonString(["flower", "flowerist", "lowest"])
+    Solution().longestCommonString(["asbjhs", "huhiu", "djh"])
+    Solution().longestCommonString(["abc", "def", "ijk"])
 
-    Solution().longestCommonPrefix(['flower', 'lower', 'lowest'])
-    Solution().longestCommonPrefix(['flower', 'lower', 'olo'])
-    Solution().longestCommonPrefix(['flower', 'lower', 'love'])
-    Solution().longestCommonPrefix(['flower', 'lower', 'love', 'glow', 'olo'])
-    Solution().longestCommonPrefix(['lower', 'love', 'glow', 'olo', 'flower'])
-    Solution().longestCommonPrefix(['flower', 'flowerist', 'flowless'])
-    Solution().longestCommonPrefix(['flower', 'flowerist', 'lowest'])
-    Solution().longestCommonPrefix(['asbjhs', 'huhiu', 'djh'])
+    # longestCommonPrefix
+    Solution().longestCommonPrefix(['flower', 'flow', 'fly'])
+    Solution().longestCommonPrefix(['flower', 'lower', 'fly'])
+    Solution().longestCommonPrefix(['asbjhs', 'asbhuhiu', 'asbdjh'])
     Solution().longestCommonPrefix(['abc', 'def', 'ijk'])
+    Solution().longestCommonPrefix(['ca', 'a'])
